@@ -1,3 +1,4 @@
+import PlanetList from 'components/PlanetList';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -10,7 +11,9 @@ interface AppProps {
 const App: React.FC<AppProps> = ({ store }) => {
   return (
     <Provider store={store}>
-      <div className="App">App</div>
+      <div className="App">
+        <PlanetList />
+      </div>
     </Provider>
   );
 };
