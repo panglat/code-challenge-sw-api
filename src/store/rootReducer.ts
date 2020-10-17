@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { StarWarsPlanets } from 'business/StarWar/Planets/reducer';
+import { StarWarsPlanets } from 'business/StarWars/Planets/reducer';
 
 const rootReducer = combineReducers({
   planets: StarWarsPlanets,
