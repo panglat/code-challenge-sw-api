@@ -1,0 +1,24 @@
+@import 'global.scss';
+
+.planet-list-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:nth-child(even) {
+    background: $color-background-even;
+  }
+
+  &:nth-child(odd) {
+    background: $color-background-odd;
+  }
+
+  &__user-information {
+    flex-wrap: nowrap;
+    padding: 10px;
+  }
+  &__paragraph {
+    word-break: break-word;
+    margin: 0;
+  }
+}

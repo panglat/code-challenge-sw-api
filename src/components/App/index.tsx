@@ -1,8 +1,8 @@
-import PlanetList from 'components/PlanetList';
+import PlanetList from 'components/app-components/PlanetList';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import './App.scss';
+import 'index.scss';
 
 interface AppProps {
   store: any;
