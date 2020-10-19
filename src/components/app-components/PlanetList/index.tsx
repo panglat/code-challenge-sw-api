@@ -62,7 +62,9 @@ const PlanetList: React.FC = () => {
         <div className="planet-list__failed-message">Planets fetch failed</div>
       )}
       {!isFetchingData && dataNext && (
-        <Button onClick={() => console.log('click')}>Get more planets</Button>
+        <Button onClick={() => dispatch(requestStarWarsPlanets())}>
+          Get more planets
+        </Button>
       )}
     </div>
   );

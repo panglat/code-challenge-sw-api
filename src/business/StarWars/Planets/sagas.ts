@@ -1,4 +1,4 @@
-import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeLatest, all, select } from 'redux-saga/effects';
 import {
   STAR_WARS_PLANETS_FETCH_REQUESTED,
   StarWarsPlanetActions,
@@ -10,11 +10,13 @@ import {
 import { getStarWarsPlanets } from 'service/StarWarsService';
 import StarWarsAPIArrayResponse from 'models/StarWars/StarWarsAPIResponse';
 import StarWarsPlanet from 'models/StarWars/StarWarsPlanet';
+import { getStarWarsPlanetsNext } from './selectors';
 
 function* fetchStarWarsPlanets(action: StarWarsPlanetActions) {
   try {
+    const next = yield select(getStarWarsPlanetsNext);
     const result: StarWarsAPIArrayResponse<StarWarsPlanet> = yield call(() =>
-      getStarWarsPlanets()
+      getStarWarsPlanets(next)
     );
     yield put(requestStarWarsPlanetsSuccess(result));
   } catch (e) {

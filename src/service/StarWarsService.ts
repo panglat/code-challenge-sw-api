@@ -3,6 +3,7 @@
  * @module services/UserService
  */
 import StarWarsAPI from 'api/StarWarsAPI';
+import Axios from 'axios';
 import StarWarsAPIArrayResponse, {
   StarWarsAPIArrayResponseData,
 } from 'models/StarWars/StarWarsAPIResponse';
@@ -11,13 +12,16 @@ import StarWarsPlanet, {
 } from 'models/StarWars/StarWarsPlanet';
 
 // eslint-disable-next-line import/prefer-default-export
-export const getStarWarsPlanets = async (): Promise<
-  StarWarsAPIArrayResponse<StarWarsPlanet>
-> => {
+export const getStarWarsPlanets = async (
+  next: string
+): Promise<StarWarsAPIArrayResponse<StarWarsPlanet>> => {
   try {
-    const response = await StarWarsAPI.get<
-      StarWarsAPIArrayResponseData<StarWarsPlanetData>
-    >('planets');
+    const axios = next
+      ? Axios.get<StarWarsAPIArrayResponseData<StarWarsPlanetData>>(next)
+      : StarWarsAPI.get<StarWarsAPIArrayResponseData<StarWarsPlanetData>>(
+          'planets'
+        );
+    const response = await axios;
     const data = response.data;
     const planets = response.data.results.map((p) => new StarWarsPlanet(p));
     const newResponse = { ...data, results: planets };
