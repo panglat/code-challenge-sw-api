@@ -5,8 +5,8 @@ import { replaceNAN } from 'helpers/numbers';
 import './styles.scss';
 
 interface PlanetListItemProps {
-  planet: StarWarsPlanet;
   onClick: (planet: StarWarsPlanet) => void;
+  planet: StarWarsPlanet;
 }
 
 const PlanetListItem: React.FC<PlanetListItemProps> = ({ planet, onClick }) => {

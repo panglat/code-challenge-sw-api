@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestStarWarsPlanets } from 'business/StarWars/Planets/actions';
 import {
@@ -14,12 +14,25 @@ import Button from 'components/base-components/Button';
 
 import './styles.scss';
 
-const PlanetList: React.FC = () => {
+export enum PlanetListSortBy {
+  noSort = 'No sort',
+  sortByNameAsc = 'Name (Asc)',
+  sortByNameDesc = 'Name (Desc)',
+  sortByPopulationAsc = 'Population (Asc)',
+  sortByPopulationDesc = 'Population (Desc)',
+}
+
+interface PlanetListProps {
+  sortBy?: string;
+}
+
+const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
   const dispatch = useDispatch();
   const planets = useSelector(getStarWarsPlanets);
   const isFetchingData = useSelector(getStarWarsPlanetsLoading);
   const dataFetchFailed = useSelector(getStarWarsPlanetsError);
   const dataNext = useSelector(getStarWarsPlanetsNext);
+  const [sortedPlanets, setSortedPlanets] = useState<StarWarsPlanet[]>([]);
 
   const handleScroll = (event: any) => {
     /*
@@ -36,6 +49,39 @@ const PlanetList: React.FC = () => {
     dispatch(requestStarWarsPlanets());
   }, [dispatch]);
 
+  useEffect(() => {
+    switch (
+      PlanetListSortBy[(sortBy as unknown) as keyof typeof PlanetListSortBy]
+    ) {
+      case PlanetListSortBy.sortByNameDesc:
+        setSortedPlanets(
+          [...planets].sort((a, b) =>
+            a.name.toLowerCase() > b.name.toLowerCase() ? -1 : 1
+          )
+        );
+        break;
+      case PlanetListSortBy.sortByNameAsc:
+        setSortedPlanets(
+          [...planets].sort((a, b) =>
+            a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+          )
+        );
+        break;
+      case PlanetListSortBy.sortByPopulationAsc:
+        setSortedPlanets(
+          [...planets].sort((a, b) => (a.population > b.population ? -1 : 1))
+        );
+        break;
+      case PlanetListSortBy.sortByPopulationDesc:
+        setSortedPlanets(
+          [...planets].sort((a, b) => (a.population > b.population ? 1 : -1))
+        );
+        break;
+      default:
+        setSortedPlanets(planets);
+    }
+  }, [planets, sortBy]);
+
   const onItemClick = (planet: StarWarsPlanet) => {
     console.log(planet);
   };
@@ -43,14 +89,13 @@ const PlanetList: React.FC = () => {
   return (
     <div className="planet-list" onScroll={handleScroll}>
       <div className="planet-list__container">
-        {planets &&
-          planets.map((planet) => (
-            <PlanetListItem
-              key={`${planet.name}-${planet.diameter}-${planet.population}`}
-              onClick={onItemClick}
-              planet={planet}
-            />
-          ))}
+        {sortedPlanets.map((planet) => (
+          <PlanetListItem
+            key={`${planet.name}-${planet.diameter}-${planet.population}`}
+            onClick={onItemClick}
+            planet={planet}
+          />
+        ))}
       </div>
       {isFetchingData && (
         <div className="planet-list__loading-message">

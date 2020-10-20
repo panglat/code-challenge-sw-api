@@ -1,4 +1,4 @@
-import PlanetList from 'components/app-components/PlanetList';
+import PlanetListView from 'components/app-components/PlanetListView';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -12,7 +12,7 @@ const App: React.FC<AppProps> = ({ store }) => {
   return (
     <Provider store={store}>
       <div className="App">
-        <PlanetList />
+        <PlanetListView />
       </div>
     </Provider>
   );
