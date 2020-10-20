@@ -13,6 +13,7 @@ import LoadingSpinner from 'components/base-components/LoadingSpinner';
 import Button from 'components/base-components/Button';
 
 import './styles.scss';
+import PlanetDetailsModal from '../PlanetDetailsModal';
 
 export enum PlanetListSortBy {
   noSort = 'No sort',
@@ -33,17 +34,7 @@ const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
   const dataFetchFailed = useSelector(getStarWarsPlanetsError);
   const dataNext = useSelector(getStarWarsPlanetsNext);
   const [sortedPlanets, setSortedPlanets] = useState<StarWarsPlanet[]>([]);
-
-  const handleScroll = (event: any) => {
-    /*
-    if (current.offsetHeight + current.scrollTop !== current.scrollHeight) {
-      console.log(current.offsetHeight, current.scrollTop, current.offsetHeight + current.scrollTop, current.scrollHeight)
-      // The user has not reached the bottom of the list
-      return;
-    }
-    reached();*/
-    console.log('Este loguea');
-  };
+  const [selectedPlanet, setSelectedPlanet] = useState<StarWarsPlanet | null>();
 
   useEffect(() => {
     dispatch(requestStarWarsPlanets());
@@ -83,11 +74,11 @@ const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
   }, [planets, sortBy]);
 
   const onItemClick = (planet: StarWarsPlanet) => {
-    console.log(planet);
+    setSelectedPlanet(planet);
   };
 
   return (
-    <div className="planet-list" onScroll={handleScroll}>
+    <div className="planet-list">
       <div className="planet-list__container">
         {sortedPlanets.map((planet) => (
           <PlanetListItem
@@ -110,6 +101,14 @@ const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
         <Button onClick={() => dispatch(requestStarWarsPlanets())}>
           Get more planets
         </Button>
+      )}
+      {selectedPlanet && (
+        <PlanetDetailsModal
+          onCloseModal={() => {
+            setSelectedPlanet(null);
+          }}
+          planet={selectedPlanet}
+        />
       )}
     </div>
   );
