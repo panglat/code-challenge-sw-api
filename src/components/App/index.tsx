@@ -1,8 +1,9 @@
-import PlanetListView from 'components/app-components/PlanetListView';
 import React from 'react';
 import { Provider } from 'react-redux';
 
 import 'index.scss';
+import SWHeader from 'components/app-components/SWHeader';
+import SWMainContent from 'components/app-components/SWMainContent';
 
 interface AppProps {
   store: any;
@@ -11,9 +12,8 @@ interface AppProps {
 const App: React.FC<AppProps> = ({ store }) => {
   return (
     <Provider store={store}>
-      <div className="App">
-        <PlanetListView />
-      </div>
+      <SWHeader />
+      <SWMainContent />
     </Provider>
   );
 };
