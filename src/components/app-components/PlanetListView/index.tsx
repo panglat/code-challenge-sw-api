@@ -12,7 +12,12 @@ const PlanetListView: React.FC = () => {
       <h1 className="planet-list-view__main-title">Planets API</h1>
       <p className="planet-list-view__paragraph">
         This is an example of a simple API call. The list can be sorted using
-        the selector
+        the selector below. Any list item can be clicked to display a modal with
+        the planet detail.
+        <br />
+        At the bottom, there is a button called “Get more planets” to fetch more
+        items. Once there are no more items, the button is not accessible
+        anymore and a message is displayed.
       </p>
       <Selector
         className="planet-list-view__selector"
