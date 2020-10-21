@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2ee2f83a5465b9705127f7d8c44cbce1",
+    "revision": "0faeb06b39029b5b62d531137366ff42",
     "url": "/code-challenge-sw-api/index.html"
   },
   {
-    "revision": "ea46f735f4c6477305c7",
+    "revision": "19d2c8acf5bbf83930a0",
     "url": "/code-challenge-sw-api/static/css/main.a0691e8c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/code-challenge-sw-api/static/js/2.7f912a41.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ea46f735f4c6477305c7",
-    "url": "/code-challenge-sw-api/static/js/main.fa283065.chunk.js"
+    "revision": "19d2c8acf5bbf83930a0",
+    "url": "/code-challenge-sw-api/static/js/main.396ded71.chunk.js"
   },
   {
     "revision": "56b8d8c18902b5cade97",
