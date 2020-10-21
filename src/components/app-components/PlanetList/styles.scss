@@ -24,13 +24,14 @@
     padding: 0.9rem;
   }
 
+  &__message {
+    font-weight: bold;
+    text-align: center;
+    padding: 0.9rem;
+  }
+
   &__more-button {
     align-self: center;
     margin: 0.5rem 0;
-  }
-
-  &__end-of-user-catalog-message {
-    font-weight: bold;
-    padding: 0.9rem;
   }
 }
