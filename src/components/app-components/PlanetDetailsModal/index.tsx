@@ -15,7 +15,7 @@ const PlanetDetailsModal: React.FC<PlanetDetailsModalProps> = ({
 }) => {
   return (
     <SimpleModal onCloseModal={onCloseModal}>
-      <div className="user-details-modal">
+      <div className="planet-details-modal">
         <h2>{`${planet.name}`}</h2>
         <p>
           <b>Diameter:</b> {replaceNAN(planet.diameter, 'unknown')} km
