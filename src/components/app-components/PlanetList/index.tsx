@@ -108,7 +108,9 @@ const PlanetList: React.FC<PlanetListProps> = ({ className, sortBy }) => {
           Get more planets
         </Button>
       )}
-      {!dataNext && <div className="planet-list__message">End of list</div>}
+      {!isFetchingData && !dataNext && (
+        <div className="planet-list__message">End of list</div>
+      )}
       {selectedPlanet && (
         <PlanetDetailsModal
           onCloseModal={() => {
