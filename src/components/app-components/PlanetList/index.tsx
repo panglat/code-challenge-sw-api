@@ -11,6 +11,8 @@ import PlanetListItem from './PlanetListItem';
 import StarWarsPlanet from 'models/StarWars/StarWarsPlanet';
 import LoadingSpinner from 'components/base-components/LoadingSpinner';
 import Button from 'components/base-components/Button';
+import cn from 'classnames';
+import { ClassValue } from 'classnames/types';
 
 import './styles.scss';
 import PlanetDetailsModal from '../PlanetDetailsModal';
@@ -24,10 +26,11 @@ export enum PlanetListSortBy {
 }
 
 interface PlanetListProps {
+  className?: ClassValue;
   sortBy?: string;
 }
 
-const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
+const PlanetList: React.FC<PlanetListProps> = ({ className, sortBy }) => {
   const dispatch = useDispatch();
   const planets = useSelector(getStarWarsPlanets);
   const isFetchingData = useSelector(getStarWarsPlanetsLoading);
@@ -78,7 +81,7 @@ const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
   };
 
   return (
-    <div className="planet-list">
+    <div className={cn('planet-list', className)}>
       <div className="planet-list__container">
         {sortedPlanets.map((planet) => (
           <PlanetListItem
@@ -98,7 +101,10 @@ const PlanetList: React.FC<PlanetListProps> = ({ sortBy }) => {
         <div className="planet-list__failed-message">Planets fetch failed</div>
       )}
       {!isFetchingData && dataNext && (
-        <Button onClick={() => dispatch(requestStarWarsPlanets())}>
+        <Button
+          className="planet-list__more-button"
+          onClick={() => dispatch(requestStarWarsPlanets())}
+        >
           Get more planets
         </Button>
       )}

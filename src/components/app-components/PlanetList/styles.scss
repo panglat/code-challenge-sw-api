@@ -1,34 +1,36 @@
+@import 'global.scss';
+
 .planet-list {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  overflow-y: auto;
-  align-items: center;
-
-  &__container {
-    width: 90%;
-    max-width: 780px;
-  }
+  margin-bottom: 1rem;
 
   &__loading-message {
     display: flex;
     align-items: center;
-    padding: 15px;
+    justify-content: center;
+    padding: 0.9rem;
 
     span {
       font-weight: bold;
-      margin-left: 10px;
+      margin-left: 0.5rem;
     }
   }
 
   &__failed-message {
     font-weight: bold;
-    color: red;
-    padding: 15px;
+    color: $color-red;
+    text-align: center;
+    padding: 0.9rem;
+  }
+
+  &__more-button {
+    align-self: center;
+    margin: 0.5rem 0;
   }
 
   &__end-of-user-catalog-message {
     font-weight: bold;
-    padding: 15px;
+    padding: 0.9rem;
   }
 }

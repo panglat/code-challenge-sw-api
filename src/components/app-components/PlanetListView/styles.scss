@@ -1,4 +1,15 @@
 @import 'global.scss';
 
 .planet-list-view {
+  display: flex;
+  flex-direction: column;
+
+  &__paragraph {
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  &__selector {
+    align-self: flex-end;
+    margin: 0.25rem 0;
+  }
 }
