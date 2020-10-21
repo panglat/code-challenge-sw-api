@@ -2,6 +2,15 @@
 This is a fictional Star Wars API Test app. The list can be sorted using the selector. Any list item can be clicked to display a modal with the planet detail.
 At the bottom, there is a button called “Get more planets” to fetch more items. Once there are no more items, the button is not accessible anymore and a message is displayed.
 
+![Animation](docs/images/animation.gif "Animation")
+
+
+## Install dependencies
+In order to run this project, install the dependencies:
+
+### `npm install`
+
+
 ## Available Scripts
 
 In the project directory, you can run:
